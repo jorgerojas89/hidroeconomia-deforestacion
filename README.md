@@ -4,7 +4,7 @@
 Tesis de Maestría en Economía · Universidad del Rosario · 2019 · Jorge Enrique Rojas Sánchez
 
 🗺️ **Visor interactivo:** https://jorgerojas89.github.io/hidroeconomia-deforestacion/
-📄 **Documento:** [enlace al repositorio institucional de la Universidad del Rosario — por completar]
+
 
 *English summary below.*
 
