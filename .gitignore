@@ -1,0 +1,60 @@
+# ---------------------------------------------------------------
+# Tesis 2.0 — qué NO se sube a GitHub
+# Regla general: el código y las tablas pequeñas se versionan;
+# las descargas pesadas se reconstruyen con los scripts de code/.
+# ---------------------------------------------------------------
+
+# Datos crudos: se descargan con los scripts (XM, Earth Engine, IGAC).
+# Solo se versionan los README y los .gitkeep de cada carpeta.
+data/raw/**
+!data/raw/**/
+!data/raw/**/README.md
+!data/raw/**/.gitkeep
+
+# Tablas intermedias: se regeneran corriendo el flujo.
+data/interim/**
+!data/interim/**/
+!data/interim/**/README.md
+!data/interim/**/.gitkeep
+
+# Certificados del IGAC y documentos oficiales: no se publican.
+# En el artículo cada cuenca se cita por su número de radicado.
+*.pdf
+!output/**/*.pdf
+
+# Ráster y formatos espaciales pesados
+*.tif
+*.tiff
+*.vrt
+*.nc
+*.sdat
+*.sgrd
+*.hdf
+*.zip
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.ipynb_checkpoints/
+.env
+
+# Credenciales (Earth Engine, Google Cloud, XM)
+credentials*.json
+*service-account*.json
+.config/earthengine/
+
+# R
+.Rhistory
+.RData
+.Rproj.user/
+renv/library/
+renv/staging/
+
+# Sistema y editores
+.DS_Store
+~$*
+*.tmp
+.vscode/
+.idea/
