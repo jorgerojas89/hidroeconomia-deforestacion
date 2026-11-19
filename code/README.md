@@ -10,7 +10,7 @@ Cada carpeta es una etapa. Se corren en orden; cada una lee lo que dejó la ante
 | `03_lluvia/` | Earth Engine (Python o JS) | `cuencas.gpkg` | `data/interim/lluvia_cuenca_mes.csv` |
 | `04_xm/` | Python (`pydataxm`) | Tabla maestra | `data/interim/xm_*.csv` |
 | `05_panel/` | R | Todo lo anterior | `data/processed/panel.csv` y diccionario |
-| `06_estimacion/` | R (`fixest`) | Panel | `output/tablas/` |
+| `06_estimacion/` | Python (`pyfixest`) y R (`fixest`) | Panel | `output/tablas/`, `output/figuras/` |
 | `07_figuras_tablas/` | R | Resultados | `output/figuras/`, `output/tablas/` |
 
 Convenciones:
@@ -31,4 +31,4 @@ El código de las etapas 00 a 05 está aquí tal como se usó para construir el 
 | `03_lluvia/` | Vacía: la lluvia se calcula en `02_deforestacion/` |
 | `04_xm/` | `descargar_xm_t5.py` (API de XM con `requests`, no `pydataxm`), `procesar_t5.py` |
 | `05_panel/` | `construir_panel.py`, `anexo_comparacion_2019.py` |
-| `06_estimacion/` | Pendiente (T7) |
+| `06_estimacion/` | `01_modelo_principal.py`, `02_pruebas_4_3.py`, `03_analisis_individuales.py`, `04_figuras.py` (Python, `pyfixest`); `t7_estimacion.R` (equivalente con `fixest`). Guía: `LEEME_T7.md` |
