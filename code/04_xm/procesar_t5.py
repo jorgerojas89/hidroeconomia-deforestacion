@@ -729,6 +729,12 @@ for nombre, etiqueta in [("ipc_dane.xlsx", "DANE, Índices – series de empalme
             ipc["fuente"] = etiqueta
             break
         NOTAS.append(f"No pude leer {nombre}: revisar el formato")
+if ipc is None and (MACRO / "ipc_dane_variacion_anual.csv").exists():
+    # Variación anual del IPC (diciembre a diciembre, DANE), cargada a mano por Jorge el 19-nov-2026.
+    # Se encadena en un índice de fin de año (dic-1992 = 100); el factor a pesos de 2024 es IPC dic-2024 / IPC dic del año.
+    v = pd.read_csv(MACRO / "ipc_dane_variacion_anual.csv").sort_values("anio")
+    v["ipc"] = 100 * (1 + v.variacion_anual_pct / 100).cumprod()
+    ipc = v[["anio", "ipc"]].assign(fuente="DANE, variación anual del IPC dic-dic (índice de fin de año encadenado)")
 if ipc is None and (MACRO / "ipc_bancomundial_anual.csv").exists():
     ipc = pd.read_csv(MACRO / "ipc_bancomundial_anual.csv").assign(fuente="Banco Mundial FP.CPI.TOTL (DANE vía FMI), respaldo")
 if ipc is not None:

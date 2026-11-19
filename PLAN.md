@@ -193,6 +193,7 @@ Esta sección se congela antes de ver el primer resultado. Si algo cambia despu�
 | 18-nov-2026 | Prueba de caudales (4.3.6): medida principal = coeficiente de variación del caudal diario; segunda = caudal base (mínimo de 7 días / media); las demás al anexo | Decisión de Jorge (T6): fijar la medida antes de estimar. Sin ver resultados |
 | 18-nov-2026 | Aclaraciones de T6, sin cambio de regla: Caracolí 2021–2022 (XM sin ningún registro en el año) entra con generación 0 por la regla de meses sin registro, marcado; Sonsón 2023–2024 queda fuera (salió de operación en abr-2022) | Aplicación de las reglas ya fijadas al armar el panel. Sin ver resultados |
 | 19-nov-2026 | Sin cambio de especificación: se sella el plan y el código de datos (T2–T6) con la etiqueta `pre-estimacion` | Constancia pública, con fecha, de que la especificación se fijó antes de estimar |
+| 19-nov-2026 | IPC oficial del DANE (variación anual dic–dic, encadenada en un índice de fin de año) en lugar del IPC del Banco Mundial para llevar el precio de bolsa a pesos de 2024. Solo cambian `factor_a_pesos_2024` y `precio_bolsa_cop2024_kwh`; ninguna variable del modelo principal | Pendiente de T5. Afecta solo la valoración (4.4). Hecho después de la etiqueta y antes de estimar. Sin ver resultados |
 
 ---
 

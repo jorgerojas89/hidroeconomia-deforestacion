@@ -414,7 +414,7 @@ dic += [
     ("meses_nino", "Meses del año con ONI ≥ 0,5", "meses", "NOAA CPC", ONA, "anual"),
     ("meses_nina", "Meses del año con ONI ≤ −0,5", "meses", "NOAA CPC", ONA, "anual"),
     ("precio_bolsa_corriente_kwh", "Precio de bolsa nacional promedio (pesos corrientes)", "COP/kWh", F_XM + " (PrecBolsNaci)", PB + " / " + PBM, "ambos"),
-    ("factor_a_pesos_2024", "Factor IPC para llevar a pesos de 2024 (IPC 2024 / IPC del año)", "factor", "Banco Mundial FP.CPI.TOTL (DANE vía FMI), respaldo", IPC, "anual"),
+    ("factor_a_pesos_2024", "Factor IPC para llevar a pesos de 2024 (IPC 2024 / IPC del año)", "factor", ipc["fuente"].iloc[0], IPC, "anual"),
     ("precio_bolsa_cop2024_kwh", "Precio de bolsa en pesos constantes de 2024. Sale del modelo principal (efectos fijos de año); sirve para la valoración", "COP de 2024/kWh", F_XM + "; IPC", PB + " / " + PBM + " / " + IPC, "ambos"),
     # caudales
     ("caudal_m3s", "Caudal medio mensual de la unidad (aportes XM; ver asignación)", "m³/s", F_XM + " (AporCaudal)", AP, "mensual"),
@@ -653,8 +653,9 @@ prueba("8 Controles", "ONI 2001–2024 completo (anual y mensual)", pa["oni"].no
 prueba("8 Controles", "precio constante 2001–2024 completo; factor 2024 = 1",
        pa["precio_bolsa_cop2024_kwh"].notna().all() and pm["precio_bolsa_cop2024_kwh"].notna().all()
        and np.isclose(pa.loc[pa["anio"].eq(2024), "factor_a_pesos_2024"].iloc[0], 1.0))
-prueba("8 Controles", "IPC: fuente oficial (BanRep o DANE)", False,
-       "se usa Banco Mundial FP.CPI.TOTL (DANE vía FMI) como respaldo; pendiente opcional de T5", revisar=True)
+_ipc_oficial = not str(ipc["fuente"].iloc[0]).startswith("Banco Mundial")
+prueba("8 Controles", "IPC: fuente oficial (BanRep o DANE)", _ipc_oficial,
+       f"fuente: {ipc['fuente'].iloc[0]}", revisar=not _ipc_oficial)
 
 # Marcas
 prueba("9 Marcas", "años de El Niño: 2009–2010, 2015–2016, 2023–2024",
