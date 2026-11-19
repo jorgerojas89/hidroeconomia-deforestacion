@@ -170,7 +170,7 @@ Esta sección se congela antes de ver el primer resultado. Si algo cambia despu�
 | Muestra principal | Unidades con delimitación del IGAC en estado "ok", excepto plantas de acueducto, 2001–2024 (o desde su entrada), sin los años de operación parcial (año de entrada a mitad de año, año de salida, años en que XM empieza a reportar la planta después del 1 de enero). Meses sin registro de generación en XM = 0. Al 17-nov-2026: 26 unidades (14 embalse, 12 filo) en 10 sistemas hídricos (variante A). Se amplía cuando el IGAC pase más proyectos a "ok"; cada ampliación se fecha y se reporta también la estimación con la muestra anterior |
 | Criterio de la hipótesis | Para cada medida: b1 < 0 con p < 0,05 (dos colas); prueba F de b1 + b2 = 0. Si las dos medidas no coinciden, se reporta y se discute, no se elige una |
 | Pruebas | Todas las de la sección 4.3, incluidos los análisis individuales (punto 9), se estiman y se reportan, salgan a favor o en contra |
-| Software | R con `fixest` |
+| Software | R con `fixest` (original). Desde el 19-nov-2026: Python con `pyfixest`, más un script equivalente en R con `fixest` (ver registro) |
 
 **Registro de cambios a la especificación**
 
@@ -194,6 +194,7 @@ Esta sección se congela antes de ver el primer resultado. Si algo cambia despu�
 | 18-nov-2026 | Aclaraciones de T6, sin cambio de regla: Caracolí 2021–2022 (XM sin ningún registro en el año) entra con generación 0 por la regla de meses sin registro, marcado; Sonsón 2023–2024 queda fuera (salió de operación en abr-2022) | Aplicación de las reglas ya fijadas al armar el panel. Sin ver resultados |
 | 19-nov-2026 | Sin cambio de especificación: se sella el plan y el código de datos (T2–T6) con la etiqueta `pre-estimacion` | Constancia pública, con fecha, de que la especificación se fijó antes de estimar |
 | 19-nov-2026 | IPC oficial del DANE (variación anual dic–dic, encadenada en un índice de fin de año) en lugar del IPC del Banco Mundial para llevar el precio de bolsa a pesos de 2024. Solo cambian `factor_a_pesos_2024` y `precio_bolsa_cop2024_kwh`; ninguna variable del modelo principal | Pendiente de T5. Afecta solo la valoración (4.4). Hecho después de la etiqueta y antes de estimar. Sin ver resultados |
+| 19-nov-2026 | Software: se estima con `pyfixest` (Python) porque R no está disponible en los entornos de trabajo; se entrega además un script equivalente en R con `fixest` para replicar en el Mac | Decisión de Jorge, sin ver resultados |
 
 ---
 
