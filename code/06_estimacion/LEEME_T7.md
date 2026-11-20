@@ -12,6 +12,10 @@ python3 03_codigo/05_estimacion/01_modelo_principal.py      # conteo + modelo pr
 python3 03_codigo/05_estimacion/02_pruebas_4_3.py           # pruebas 2–8 de 4.3 (la 7 queda pendiente)
 python3 03_codigo/05_estimacion/03_analisis_individuales.py # 4.3.9: por unidad, influencia, errores alternativos
 python3 03_codigo/05_estimacion/04_figuras.py               # figuras
+python3 -m pip install python-calamine
+python3 03_codigo/05_estimacion/05_horas_generacion.py      # horas con generación (Excel horarios de XM, 02_datos/Generacion)
+python3 03_codigo/05_estimacion/06_hipotesis_h2.py          # hipótesis exploratoria H2 (registro de cambios, 20-nov)
+python3 03_codigo/05_estimacion/07_valoracion.py            # valoración 4.4 con los supuestos del 20-nov
 Rscript 03_codigo/05_estimacion/t7_estimacion.R             # equivalente en R; compara con las tablas de Python
 ```
 
@@ -44,9 +48,21 @@ Definiciones de las pruebas (fijadas en el código antes de correr la primera re
 | `t7_03_por_unidad`, `_resumen` | Regresión por unidad (Newey-West 2 rezagos) y resumen por tipo |
 | `t7_03_influencia` | Quitar una unidad o un sistema a la vez |
 | `t7_03_errores_alternativos` | Errores por unidad (26) y por sistema B (14) |
+| `t7_06_h2_*` | Hipótesis exploratoria H2: diseño dentro (`dentro`), entre unidades (`entre`, descriptivo), datos y validación de horas |
+| `t7_07_valoracion_*` | Valoración: histórica 2001–2024, a futuro 30 años, por unidad y resumen |
 | `t7_resumen.md` | Resumen de una página |
 
 ## Notas de muestra (registro de cambios, 19-nov, después de ver resultados)
 
 - **Caudales:** `cv_diario` y `q7min_rel` necesitan la serie diaria de XM; existen en 218 de las 349 unidad-año del conteo de T6 (216 tras quitar celdas de una sola observación), 8 sistemas.
 - **Mensual:** `pyfixest` retira observaciones que quedan solas en su celda año × mes (34 en la época seca propia). No cambian los coeficientes; `fixest` en R las conserva, así que el N puede diferir.
+
+## Prueba 7 (fuente alterna)
+
+Descartada por decisión de Jorge el 20-nov-2026: no hay datos por cuenca y la serie del Sistema de Monitoreo de Bosques y Carbono no es comparable con la de Hansen.
+
+## Correr el equivalente en R en el Mac
+
+1. Instalar R (https://cloud.r-project.org) y, en R: `install.packages(c("fixest", "arrow", "sandwich", "lmtest", "data.table", "MASS"))`.
+2. En la Terminal, desde `03_tesis`: `Rscript 03_codigo/05_estimacion/t7_estimacion.R`.
+3. Revisar `07_salidas/tablas/R_t7_comparacion_python.csv`: `dif_est` debe ser ≈ 0. `dif_ee` puede ser pequeña (ajuste de muestra pequeña de cada paquete) y `dif_p_wcb` puede llegar al tercer decimal (azar del bootstrap). El script de R cubre 01–03; H2 y la valoración están solo en Python.
